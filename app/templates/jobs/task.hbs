@@ -1,0 +1,89 @@
+<AuToolbar @size="medium" @skin="tint" @border="bottom" as |Group|>
+  <Group>
+    <ul class="au-c-list-horizontal au-c-list-horizontal--small">
+      <li class="au-c-list-horizontal__item">
+        <AuLink @route="jobs" @icon="arrow-left">
+          {{t "jobs.overview.title"}}
+        </AuLink>
+      </li>
+      {{#if this.model.job}}
+        <li class="au-c-list-horizontal__item">
+          <AuLink @route="jobs.details" @model={{this.model.job.id}}>
+            {{t "jobs.details.title"}}
+          </AuLink>
+        </li>
+      {{/if}}
+      <li class="au-c-list-horizontal__item au-u-medium">
+        {{t "jobs.tasks.title"}}
+      </li>
+    </ul>
+  </Group>
+</AuToolbar>
+
+<AuToolbar @border="bottom" @size="large" as |Group|>
+  <Group class="au-c-toolbar__group--row au-c-toolbar_space-between">
+    <AuHeading @skin="2">{{t "jobs.tasks.title"}}</AuHeading>
+  </Group>
+  <Group class="au-c-toolbar__group--row">
+    <ul class="au-o-grid">
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <AuLabel>{{t "jobs.tasks.uri"}}</AuLabel>
+        <p class="au-word-wrap">{{this.model.uri}}</p>
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <AuLabel>{{t "jobs.tasks.operation"}}</AuLabel>
+        <p class="au-word-wrap">{{this.model.operation}}</p>
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <AuLabel>{{t "jobs.tasks.created"}}</AuLabel>
+         {{format-datetime this.model.created}}
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <AuLabel>{{t "jobs.tasks.modified"}}</AuLabel>
+        {{format-datetime this.model.modified}}
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <AuLabel>{{t "jobs.tasks.status"}}</AuLabel>
+        <StatusPill @status={{this.model.shortStatus}}></StatusPill>
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-2-6@medium">
+        {{#if this.model.error.message}}
+        <AuAlert @icon="cross" @title={{t "jobs.tasks.error_title"}} @skin="error">
+          <p class="au-word-wrap">{{this.model.error.message}}</p>
+        </AuAlert>
+        {{/if}}
+      </li>
+    </ul>
+  </Group>
+</AuToolbar>
+
+<AuTabs as |Tab|>
+  <Tab>
+    <AuLink @route="jobs.task.input-containers-files">
+      {{t "jobs.tasks.icf.link_input"}}
+    </AuLink>
+  </Tab>
+  <Tab>
+    <AuLink @route="jobs.task.results-containers-files">
+      {{t "jobs.tasks.icf.link_result"}}
+    </AuLink>
+  </Tab>
+  <Tab>
+    <AuLink @route="jobs.task.input-containers-graph">
+      {{t "jobs.tasks.icf.link_input_graphs"}}
+    </AuLink>
+  </Tab>
+  <Tab>
+    <AuLink @route="jobs.task.results-containers-graph">
+      {{t "jobs.tasks.icf.link_result_graphs"}}
+    </AuLink>
+  </Tab>
+  <Tab>
+    <AuLink @route="jobs.task.input-containers-harvesting-collections">
+      {{t "jobs.tasks.icf.link_remote"}}
+    </AuLink>
+  </Tab>
+</AuTabs>
+
+
+{{outlet}}

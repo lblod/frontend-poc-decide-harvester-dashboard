@@ -1,0 +1,14 @@
+<AuFormRow
+  @alignment="default"
+  ...attributes>
+  {{#let (unique-id) as | creatorId |}}
+    <AuLabel for={{creatorId}}>
+      {{t "jobs.overview.data.creator"}}
+    </AuLabel>
+    <AuInput
+      @width="block"
+      id={{creatorId}}
+      value={{@value}}
+      {{on 'input' this.onChange}}/>
+  {{/let}}
+</AuFormRow>

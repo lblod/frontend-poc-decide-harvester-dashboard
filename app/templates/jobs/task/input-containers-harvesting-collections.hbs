@@ -1,0 +1,28 @@
+<AuHeading @skin="3" class="au-o-box">
+  {{t "jobs.ichc.title"}}
+</AuHeading>
+
+{{#let (t "jobs.ichc.data.nodata")
+       (t "jobs.ichc.data.uri")
+       (t "jobs.ichc.data.source")
+  as | nodata uri so |}}
+  <AuDataTable
+    @content={{this.model}}
+    @noDataMessage={{nodata}}
+    as |t|>
+    <t.content as |c|>
+      <c.header>
+      <th class="au-u-visible-small-up">{{uri}}</th>
+      <th class="au-u-visible-small-up">{{so}}</th>
+      </c.header>
+      <c.body as |row|>
+        <td class="au-u-visible-small-up">
+          {{row.uri}}
+        </td>
+        <td class="au-u-visible-small-up">
+          {{row.source}}
+        </td>
+      </c.body>
+    </t.content>
+  </AuDataTable>
+{{/let}}

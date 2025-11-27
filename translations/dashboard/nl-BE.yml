@@ -1,0 +1,34 @@
+title: "Dashboard"
+logout: "Afmelden"
+resetfilters: "Filters verwijderen"
+loading: "Aan het laden"
+nav:
+  reports: "Rapporten"
+  errors: "Problemen"
+  jobs: "Taken"
+errors:
+  title: "Taken details"
+  no-data: "Geen logboeken gevonden"
+  fields:
+    loglevel: "Log niveau"
+    source: "Bron"
+    classname: "Klassenaam"
+    message: "Bericht"
+    date: "Datum"
+    info: "Specifieke informatie"
+  filter:
+    loglevel: "Log niveau"
+    source: "Bron"
+    period: "Periode gemaakt"
+    all: "Alle rapporten"
+    specific: "Specifieke periode"
+    from: "from"
+    to: "to"
+reports:
+  title: "Rapporten"
+  download: "Download"
+  fields:
+    title: "Titel"
+    description: "Beschrijving"
+    created: "Gemaakt op"
+    file: "Bestand"

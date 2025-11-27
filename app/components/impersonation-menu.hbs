@@ -1,0 +1,31 @@
+<div class="au-u-flex au-u-flex--vertical-center">
+  <AuPill @icon={{this.UserIcon}}>{{this.adminLabel}}</AuPill>
+
+  <AuDropdown
+    @title={{t "impersonation-menu.dropdown-title"}}
+    @hideText={{true}}
+    @alignment="right"
+    @icon={{this.icon}}
+    class="au-u-margin-left-tiny"
+    role="menu"
+  >
+    {{#if this.isImpersonating}}
+      <AuLink @route="impersonate" @icon={{this.SwitchIcon}} role="menuitem">
+        {{t "impersonation-menu.switch"}}
+      </AuLink>
+
+      <AuButton
+        @skin="link"
+        @icon={{this.LogoutIcon}}
+        role="menuitem"
+        {{on "click" this.stopImpersonation}}
+      >
+        {{t "impersonation-menu.stop"}}
+      </AuButton>
+    {{else}}
+      <AuLink @route="impersonate" @icon={{this.LoginIcon}} role="menuitem">
+        {{t "impersonation-menu.start"}}
+      </AuLink>
+    {{/if}}
+  </AuDropdown>
+</div>

@@ -1,0 +1,55 @@
+<AuMainContainer as |m|>
+  <m.content @scroll={{true}}>
+    <main id="content">
+      <div class="au-o-region-large">
+        <div class="au-o-layout">
+          <AuHeading @skin="4">{{t "impersonate.title"}}</AuHeading>
+          <p class="au-u-margin-top-small au-u-margin-bottom">
+            <AuInput
+              @width="block"
+              placeholder={{t "mock-login.placeholder"}}
+              value={{this.search}}
+              aria-label={{t "mock-login.searchlabel"}}
+              {{on "input" this.updateSearch.perform}}
+            />
+          </p>
+          <Await @promise={{this.accountsPromise}}>
+            <:pending>
+              <AuLoader>{{t "mock-login.loading"}}</AuLoader>
+            </:pending>
+
+            <:success as |accounts|>
+              {{#if accounts.length}}
+                <ul class="au-o-flow au-o-flow--small au-u-margin-bottom-small">
+                  {{#each accounts as |account|}}
+                    <li>
+                      <AuButton
+                        {{!TODO: this should be a tertiary button, but Appuniversum doesn't support that yet}}
+                        @skin="secondary"
+                        class="mock-account-button au-u-padding-small au-u-1-1 au-u-text-left"
+                        {{on
+                          "click"
+                          (fn this.impersonateAccount.perform account.id)
+                        }}
+                      >
+                        {{account.gebruiker.voornaam}}
+                        {{account.gebruiker.achternaam}}
+                      </AuButton>
+                    </li>
+                  {{/each}}
+                </ul>
+              {{/if}}
+              <AuDataTableNumberPagination
+                @page={{this.page}}
+                @size={{this.size}}
+                @nbOfItems={{accounts.length}}
+                @total={{accounts.meta.count}}
+                @links={{accounts.meta.pagination}}
+              />
+            </:success>
+          </Await>
+        </div>
+      </div>
+    </main>
+  </m.content>
+</AuMainContainer>

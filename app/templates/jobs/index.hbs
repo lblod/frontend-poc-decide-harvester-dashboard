@@ -1,0 +1,91 @@
+<AuToolbar @size="large" as | Group |>
+  <Group>
+  <AuHeading @skin="2">{{t "jobs.overview.title"}}</AuHeading>
+  </Group>
+  {{#if this.isFiltering}}
+    <Group>
+      <AuButton
+        @icon="undo"
+        @iconAlignment="left"
+        {{on 'click' this.resetFilter}}>
+        {{t "jobs.general.reset-filters"}}
+      </AuButton>
+    </Group>
+  {{/if}}
+</AuToolbar>
+<AuToolbar @size="large" as | Group |>
+  <Group>
+    <div class="au-c-form--inline au-u-flex--inline au-u-flex--wrap">
+      <CreatorFilter
+        class="au-u-margin-right-small"
+        @value={{this.creatorValue}}
+        @onChange={{this.handleCreatorChange}}/>
+      <OperationFilter
+        class="au-u-margin-right-small"
+        @value={{this.operationValue}}
+        @onChange={{this.handleOperationChange}}/>
+
+    </div>
+
+
+  </Group>
+  <Group>
+                <NewJob />
+</Group>
+</AuToolbar>
+
+{{#let (t "jobs.overview.data.uri")
+       (t "jobs.overview.data.created")
+       (t "jobs.overview.data.modified")
+       (t "jobs.overview.data.creator")
+       (t "jobs.overview.data.operation")
+       (t "jobs.overview.data.status")
+       (t "jobs.overview.data.action")
+       (t "jobs.overview.data.view")
+  as | uri cr mo co op st action view |}}
+  <AuDataTable
+    @content={{this.model}}
+    @isLoading={{this.queryStore.isRunning}}
+    @fields="title description"
+    @noDataMessage={{t "jobs.overview.data.nodata"}}
+    @sort={{this.sort}}
+    @size={{this.size}}
+    @page={{this.page}} as |t|>
+    <t.content as |c|>
+      <c.header>
+        <th class="au-u-visible-small-up">{{uri}}</th>
+        <AuDataTableThSortable @label={{cr}} @field="created" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <AuDataTableThSortable @label={{mo}} @field="modified" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <AuDataTableThSortable @label={{co}} @field="creator" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <AuDataTableThSortable @label={{op}} @field="operation" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <AuDataTableThSortable @label={{st}} @field="status" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <th class="au-u-visible-small-up">{{action}}</th>
+      </c.header>
+      <c.body as |row|>
+        <td>
+          {{row.uri}}
+        </td>
+        <td>
+          {{format-datetime row.created}}
+        </td>
+        <td class="au-u-visible-small-up">
+          {{format-datetime row.modified}}
+        </td>
+        <td class="au-u-visible-medium-up">
+          {{row.creator}}
+        </td>
+        <td class="au-u-visible-small-up au-word-wrap">
+          {{row.operation}}
+        </td>
+        <td class="au-u-visible-small-up">
+          <StatusPill @status={{row.shortStatus}}></StatusPill>
+        </td>
+        <td class="au-u-visible-large-up">
+          <AuLink @icon="eye" @route="jobs.details" @model={{row}}>
+            {{view}}
+          </AuLink>
+        </td>
+      </c.body>
+    </t.content>
+  </AuDataTable>
+{{/let}}

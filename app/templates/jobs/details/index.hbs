@@ -1,0 +1,53 @@
+<AuHeading @skin="3" class="au-o-box">{{t "jobs.details.tasks.title"}}</AuHeading>
+
+{{#let (t "jobs.details.tasks.data.nodata")
+       (t "jobs.details.tasks.data.uri")
+       (t "jobs.details.tasks.data.created")
+       (t "jobs.details.tasks.data.operation")
+       (t "jobs.details.tasks.data.index")
+       (t "jobs.details.tasks.data.status")
+       (t "jobs.details.tasks.data.info")
+       (t "jobs.details.tasks.data.view")
+  as | nd uri cr op in st io view |}}
+  <AuDataTable
+    @content={{this.model}}
+    @fields="title description"
+    @noDataMessage={{nd}}
+    @sort={{this.sort}}
+    @size={{this.size}}
+    @page={{this.page}} as |t|>
+    <t.content as |c|>
+      <c.header>
+        <th class="au-u-visible-small-up">{{uri}}</th>
+        <AuDataTableThSortable @label={{cr}} @field="created" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <AuDataTableThSortable @label={{op}} @field="operation" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <AuDataTableThSortable @label={{in}} @field="index" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <AuDataTableThSortable @label={{st}} @field="status" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <th class="au-u-visible-small-up">{{io}}</th>
+      </c.header>
+      <c.body as |row|>
+        <td>
+          {{row.uri}}
+        </td>
+        <td>
+          {{format-datetime row.created}}
+        </td>
+        <td class="au-u-visible-small-up au-word-wrap">
+          {{row.operation}}
+        </td>
+        <td class="au-u-visible-small-up">
+          {{row.index}}
+        </td>
+        <td class="au-u-visible-small-up">
+          {{row.name}}
+          <StatusPill @status={{row.shortStatus}}></StatusPill>
+        </td>
+        <td class="au-u-visible-small-up">
+          <AuLink @icon="eye" @route="jobs.task.input-containers-files" @model={{row}}>
+            {{view}}
+          </AuLink>
+        </td>
+      </c.body>
+    </t.content>
+  </AuDataTable>
+{{/let}}

@@ -1,0 +1,47 @@
+<AuToolbar
+  @size="large"
+  as | Group |>
+  <Group>
+    <AuHeading @skin="2">{{t "dashboard.reports.title"}}</AuHeading>
+
+  </Group>
+</AuToolbar>
+
+
+{{#let (t "dashboard.reports.fields.title")
+       (t "dashboard.reports.fields.description")
+       (t "dashboard.reports.fields.created")
+       (t "dashboard.reports.fields.file")
+  as |ti de cr fi|}}
+  <AuDataTable
+    @content={{this.model}}
+    @isLoading={{this.isLoading}}
+    @filter={{this.filter}}
+    @sort={{this.sort}}
+    @page={{this.page}}
+    @size={{this.size}}
+    as |table|>
+    <table.content as |c|>
+      <c.header>
+        <AuDataTableThSortable @label={{ti}} @field='title' @currentSorting={{this.sort}}/>
+        <AuDataTableThSortable @label={{de}} @field='description' @currentSorting={{this.sort}}/>
+        <AuDataTableThSortable @label={{cr}} @field='created' @currentSorting={{this.sort}}/>
+        <AuDataTableThSortable @label={{fi}} @field='file' @currentSorting={{this.sort}}/>
+      </c.header>
+      <c.body as |row|>
+        <td>{{row.title}}</td>
+        <td>{{row.description}}</td>
+        <td>{{format-datetime row.created}}</td>
+        <td>
+          <AuLinkExternal
+            href='/files/{{row.file.id}}/download'
+            download="file"
+            @icon="download"
+            @iconAlignment="left">
+            {{t "dashboard.reports.download"}}
+          </AuLinkExternal>
+        </td>
+      </c.body>
+    </table.content>
+  </AuDataTable>
+{{/let}}

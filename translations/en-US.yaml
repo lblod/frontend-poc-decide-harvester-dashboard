@@ -1,0 +1,107 @@
+mock-login:
+  choose: "Choose a governing body to login."
+  searchlabel: "Search governing body"
+  placeholder: "Aalst, Berchem, …"
+  loading: "Retrieving governing bodies"
+login:
+  username: Username
+  password: Password
+  submit: Log In
+acmidm-login:
+  redirecting: Redirecting
+  logging-in: Logging in
+impersonate:
+  title: Impersonate an account
+impersonation-menu:
+  dropdown-title: Impersonation menu
+  start: Impersonate an account
+  stop: Stop the impersonation
+  switch: Impersonate a different account
+jobs:
+  new: New
+  general:
+    reset-filters: "Reset all filters"
+  overview:
+    title: "Job overview"
+    data:
+      nodata: "No jobs found"
+      uri: "URI"
+      created: "Created"
+      modified: "Modified"
+      creator: "Creator"
+      operation: "Operation"
+      status: "Status"
+      action: "Action"
+      view: "View"
+  details:
+    title: "Job details"
+    delete: "Delete"
+    deleting: "Deleting"
+    uri: "URI"
+    creator: "Creator"
+    created: "Created"
+    modified: "Task Modified"
+    status: "Status"
+    error_title: "Error"
+    tasks:
+      title: "Tasks list"
+      data:
+        nodata: "No files found"
+        uri: "URI"
+        created: "Created"
+        operation: "Operation"
+        index: "Index"
+        status: "Status"
+        info: "Info"
+        view: "View"
+  tasks:
+    title: "Task details"
+    uri: "URI"
+    created: "Created"
+    operation: "Operation"
+    task_created: "Task Created"
+    modified: "Task Modified"
+    status: "Status"
+    error_title: "Error"
+    icf:
+      link_input: "Input files"
+      link_result: "Results files"
+      link_input_graphs: "Input graphs"
+      link_result_graphs: "Results graphs"
+      link_remote: "Remote data objects"
+  icf:
+    title: "Files input list"
+    data:
+      nodata: "No files found"
+      id: "ID"
+      name: "Name"
+      size: "Size"
+      created: "Created"
+      action: "Action"
+      download: "Download file"
+  icg:
+    title: "Graphs input list"
+    data:
+      nodata: "No graphs found"
+      uri: "URI"
+  ichc:
+    title: "List with remote data objects"
+    data:
+      nodata: "No remote data object found"
+      uri: "URI"
+      source: "Source (URL)"
+  rcf:
+    title: "Files result list"
+    data:
+      nodata: "No files found"
+      id: "ID"
+      name: "Name"
+      size: "Size"
+      created: "Created"
+      action: "Action"
+      download: "Download file"
+  rcg:
+    title: "Graphs results list"
+    data:
+      nodata: "No graphs found"
+      uri: "URI"

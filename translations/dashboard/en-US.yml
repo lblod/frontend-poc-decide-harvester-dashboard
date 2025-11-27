@@ -1,0 +1,35 @@
+title: "Dashboard"
+logout: "Log out"
+resetfilters: "Reset all filters"
+loading: "Loading"
+nav:
+  reports: "Reports"
+  errors: "Errors"
+  jobs: "Jobs"
+errors:
+  title: "Job details"
+  no-data: "No logs found"
+  fields:
+    loglevel: "Log level"
+    source: "Source"
+    classname: "Class name"
+    message: "Message"
+    date: "Date"
+    info: "Specific information"
+  filter:
+    loglevel: "Log level"
+    source: "Source"
+    period: "Period generated"
+    all: "All logs"
+    specific: "Specific period"
+    from: "from"
+    to: "to"
+reports:
+  title: "Reports"
+  download: "Download"
+  fields:
+    title: "Title"
+    description: "Description"
+    created: "Created on"
+    file: "File"
+

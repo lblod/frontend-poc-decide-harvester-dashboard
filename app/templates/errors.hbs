@@ -1,0 +1,70 @@
+<AuToolbar
+  @size="large"
+  as | Group |>
+  <Group>
+    <AuHeading @skin="2">
+      {{t "dashboard.errors.title"}}
+    </AuHeading>
+  </Group>
+  <Group>
+    {{#if this.isFiltering}}
+      <AuButton
+        @icon="undo"
+        @iconAlignment="left"
+        {{on 'click' this.resetFilter}}>
+        {{t "dashboard.resetfilters"}}
+      </AuButton>
+    {{/if}}
+  </Group>
+</AuToolbar>
+<AuToolbar
+  @size="large"
+  as | Group |>
+  <Group>
+    <div class="au-c-form--inline au-u-flex--inline au-u-flex--wrap">
+      <LogLevelSelect
+        class="au-u-margin-right-small"
+        @value={{this.logLevelId}}
+        @onChange={{this.updateParam}}/>
+      <LogSourceSelect
+        class="au-u-margin-right-small"
+        @value={{this.logSourceId}}
+        @onChange={{this.updateParam}}/>
+      <LogDateRange
+        class="au-u-margin-right-small"
+        @fromValue={{this.logDateFrom}}
+        @toValue={{this.logDateTo}}
+        @onChange={{this.updateParam}}/>
+    </div>
+  </Group>
+</AuToolbar>
+
+{{#let (t "dashboard.errors.fields.loglevel")
+       (t "dashboard.errors.fields.source")
+       (t "dashboard.errors.fields.classname")
+       (t "dashboard.errors.fields.message")
+       (t "dashboard.errors.fields.date")
+       (t "dashboard.errors.fields.info")
+  as |ll so cn me da in|}}
+<AuDataTable @content={{this.model}} @isLoading={{this.isLoading}} @noDataMessage={{t "dashboard.errors.no-data"}} @sort={{this.sort}}
+  @page={{this.page}} @size={{this.size}} as |t|>
+  <t.content as |c|>
+    <c.header>
+      <AuDataTableThSortable @label={{ll}} @field='logLevel.label' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{so}} @field='logSource.label' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{cn}} @field='className' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{me}} @field='message' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{da}} @field='datetime' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{in}} @field='specificInformation' @currentSorting={{this.sort}} />
+    </c.header>
+    <c.body as |logEntry|>
+      <td>{{logEntry.logLevel.label}}</td>
+      <td>{{logEntry.logSource.label}}</td>
+      <td>{{last-part-uri logEntry.className}}</td>
+      <td>{{logEntry.message}}</td>
+      <td>{{format-datetime logEntry.datetime}}</td>
+      <td>{{logEntry.specificInformation}}</td>
+    </c.body>
+  </t.content>
+</AuDataTable>
+{{/let}}

@@ -1,0 +1,107 @@
+mock-login:
+  choose: "Kies een bestuurseenheid om mee in te loggen."
+  searchlabel: "Bestuurseenheid zoeken"
+  placeholder: "Aalst, Berchem, …"
+  loading: "Bestuurseenheden aan het ophalen"
+login:
+  username: Gebruikersnaam
+  password: Wachtwoord
+  submit: Inloggen
+acmidm-login:
+  redirecting: Aan het doorverwijzen
+  logging-in: Aan het aanmelden
+impersonate:
+  title: Simuleer een gebruiker
+impersonation-menu:
+  dropdown-title: Simulatie menu
+  start: Simuleer een gebruiker
+  stop: Simulatie stopzetten
+  switch: Simuleer een andere gebruiker
+jobs:
+  new: Nieuw
+  general:
+    reset-filters: "Filters verwijderen"
+  overview:
+    title: "Job overzicht"
+    data:
+      nodata: "Geen taken gevonden"
+      uri: "URI"
+      created: "Gecreëerd"
+      modified: "Bewerkt"
+      creator: "Maker"
+      operation: "Operatie"
+      status: "Status"
+      action: "Actie"
+      view: "Bekijk"
+  details:
+    title: "Job details"
+    delete: "Verwijder"
+    deleting: "Aan het verwijderen"
+    uri: "URI"
+    creator: "Maker"
+    created: "Gemaakt"
+    modified: "Bewerkt"
+    status: "Status"
+    error_title: "Error"
+    tasks:
+      title: "Takenlijst"
+      data:
+        nodata: "Geen bestanden gevonden"
+        uri: "URI"
+        created: "Gemaakt"
+        operation: "Operatie"
+        index: "Index"
+        status: "Status"
+        info: "Info"
+        view: "Bekijk"
+  tasks:
+    title: "Taak details"
+    uri: "URI"
+    created: "Gemaakt"
+    operation: "Operatie"
+    task_created: "Taak gemaakt"
+    modified: "Taak bewerkt"
+    status: "Status"
+    error_title: "Error"
+    icf:
+      link_input: "Invoerbestanden"
+      link_result: "Resultaatbestanden"
+      link_input_graphs: "Invoergrafen"
+      link_result_graphs: "Resultaatgrafen"
+      link_remote: "Externe dataobjecten"
+  icf:
+    title: "Lijst van invoerbestanden"
+    data:
+      nodata: "Geen bestanden gevonden"
+      id: "ID"
+      name: "Naam"
+      size: "Grootte"
+      created: "Gecreëerd"
+      action: "Actie"
+      download: "Download bestand"
+  icg:
+    title: "Lijst met invoergrafen"
+    data:
+      nodata: "Geen grafen gevonden"
+      uri: "URI"
+  ichc:
+    title: "Lijst met externe invoer dataobjecten"
+    data:
+      nodata: "Geen bronnen gevonden"
+      uri: "URI"
+      source: "Bron (URL)"
+  rcf:
+    title: "Lijst met resultaatbestanden"
+    data:
+      nodata: "Geen bestanden gevonden"
+      id: "ID"
+      name: "Naam"
+      size: "Grootte"
+      created: "Gecreëerd"
+      action: "Actie"
+      download: "Download bestand"
+  rcg:
+    title: "Lijst met resultaatgrafen"
+    data:
+      nodata: "Geen grafen gevonden"
+      uri: "URI"

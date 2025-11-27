@@ -1,0 +1,53 @@
+<AuHeading @skin="3" class="au-o-box">{{t "jobs.icf.title"}}</AuHeading>
+
+{{#let (t "jobs.icf.data.nodata")
+       (t "jobs.icf.data.id")
+       (t "jobs.icf.data.name")
+       (t "jobs.icf.data.size")
+       (t "jobs.icf.data.created")
+       (t "jobs.icf.data.action")
+       (t "jobs.icf.data.download")
+  as | nodata id na si cr ac download |}}
+  <AuDataTable
+    @content={{this.model}}
+    @fields="title description"
+    @noDataMessage={{nodata}}
+    @sort={{this.sort}}
+    @size={{this.size}}
+    @page={{this.page}} as |t|>
+    <t.content as |c|>
+      <c.header>
+        <th class="au-u-visible-small-up">{{id}}</th>
+        <AuDataTableThSortable @label={{na}} @field="name" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <th class="data-table__header-title">{{si}}</th>
+        <AuDataTableThSortable @label={{cr}} @field="created" @currentSorting={{this.sort}} @class="data-table__header-title" />
+        <th class="au-u-visible-small-up">{{ac}}</th>
+      </c.header>
+      <c.body as |row|>
+        <td class="au-u-visible-small-up">
+          {{row.uri}}
+        </td>
+        <td>
+          {{row.name}}
+        </td>
+        <td>
+          {{row.humanReadableSize}}
+        </td>
+        <td>
+          {{format-datetime row.created}}
+        </td>
+        <td class="au-u-visible-small-up">
+          <AuLinkExternal
+            @skin="primary"
+            @icon="download"
+            @iconAlignment="left"
+            href={{row.downloadLink}}
+            download={{row.name}}
+            {{on "click" this.overrideClick}}>
+            {{download}}
+          </AuLinkExternal>
+        </td>
+      </c.body>
+    </t.content>
+  </AuDataTable>
+{{/let}}

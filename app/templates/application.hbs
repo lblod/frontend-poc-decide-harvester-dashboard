@@ -1,0 +1,81 @@
+<AuModalContainer />
+
+<AuApp>
+  <AuMainHeader
+    @brandLink={{unless
+      this.session.isAuthenticated
+      "https://www.vlaanderen.be/nl"
+    }}
+    @homeRoute="index"
+    @appTitle={{t "dashboard.title"}}
+  >
+    {{#if this.currentSession.isAdmin}}
+      <li class="au-c-list-horizontal__item">
+        <ImpersonationMenu />
+      </li>
+    {{/if}}
+    <li class="au-c-list-horizontal__item">
+      {{#if this.session.isAuthenticated}}
+        <AuDropdown
+          @title={{this.userInfo}}
+          @buttonLabel="Account settings"
+          @alignment="right"
+          role="menu"
+        >
+          <AuButton
+            @icon="logout"
+            @skin="link"
+            role="menuitem"
+            {{on "click" this.invalidateSession}}
+          >
+            {{t "dashboard.logout"}}
+          </AuButton>
+        </AuDropdown>
+      {{/if}}
+    </li>
+  </AuMainHeader>
+
+  {{#if this.session.isAuthenticated}}
+    <AuMainContainer as |m|>
+      {{#if this.showSidebar}}
+        <m.sidebar>
+          <div class="au-c-sidebar">
+            <div class="au-c-sidebar__content">
+              <nav>
+                <ul class="au-c-list-navigation">
+                  <li class="au-c-list-navigation__item">
+                    {{#if (this.isReportsRouteEnabled)}}
+                      <AuNavigationLink @route="reports">
+                        <AuIcon @icon="documents" @alignment="left" />
+                        {{t "dashboard.nav.reports"}}
+                      </AuNavigationLink>
+                    {{/if}}
+                    {{#if (this.isErrorsRouteEnabled)}}
+                      <AuNavigationLink @route="errors">
+                        <AuIcon @icon="alert-triangle" @alignment="left" />
+                        {{t "dashboard.nav.errors"}}
+                      </AuNavigationLink>
+                    {{/if}}
+                    {{#if (this.isJobsRouteEnabled)}}
+                      <AuNavigationLink @route="jobs">
+                        <AuIcon @icon="gear" @alignment="left" />
+                        {{t "dashboard.nav.jobs"}}
+                      </AuNavigationLink>
+                    {{/if}}
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </m.sidebar>
+      {{/if}}
+      <m.content @scroll={{true}}>
+        <div class="au-d-component-block au-d-component-block--overflow">
+          {{outlet}}
+        </div>
+      </m.content>
+    </AuMainContainer>
+  {{else}}
+    {{outlet}}
+  {{/if}}
+</AuApp>

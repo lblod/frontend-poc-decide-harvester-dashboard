@@ -1,0 +1,64 @@
+<AuFormRow @alignment="default" ...attributes>
+  {{#let (unique-id) as | logRangeEnable |}}
+    <AuLabel
+      for={{logRangeEnable}}>
+      {{t "dashboard.errors.filter.period"}}
+    </AuLabel>
+    <AuButtonGroup
+      id={{logRangeEnable}}
+      @inline={{true}}>
+      <AuButton
+        @skin="secondary"
+        class="{{unless this.isFilterEnabled 'is-active'}}"
+        {{on 'click' this.resetFilter}}>
+        {{t "dashboard.errors.filter.all"}}
+      </AuButton>
+      <AuButton
+        @skin="secondary"
+        class="{{if this.isFilterEnabled 'is-active'}}"
+        {{on 'click' this.initRangeFilter}}>
+        {{t "dashboard.errors.filter.specific"}}
+      </AuButton>
+    </AuButtonGroup>
+  {{/let}}
+
+  {{#if this.isFilterEnabled}}
+    <div class="log-range-datepicker-small au-u-flex au-u-flex--wrap au-u-margin-top-small">
+      <AuFormRow @alignment="pre"
+        class="au-u-margin-right-small au-u-margin-bottom-small">
+        {{#let (unique-id) as | dateFromId |}}
+          <AuLabel
+            for={{dateFromId}}>
+            {{t "dashboard.errors.filter.from"}}
+          </AuLabel>
+          <AuDatePicker
+            id={{dateFromId}}
+            @value={{@fromValue}}
+            @min="2000-01-01"
+            @max="2050-01-01"
+            @onChange={{this.updateFromValue}}
+            @localization={{this.datepickerLocalization}}
+          >
+          </AuDatePicker>
+        {{/let}}
+      </AuFormRow>
+      <AuFormRow
+        class="au-u-margin-right-small au-u-margin-bottom-small"
+        @alignment="pre">
+        {{#let (unique-id) as | dateToId |}}
+          <AuLabel
+            for={{dateToId}}>
+            {{t "dashboard.errors.filter.to"}}
+          </AuLabel>
+          <AuDatePicker
+            id={{dateToId}}
+            @value={{@toValue}}
+            @min="2000-01-01"
+            @max="2050-01-01"
+            @onChange={{this.updateToValue}}>
+          </AuDatePicker>
+        {{/let}}
+      </AuFormRow>
+    </div>
+  {{/if}}
+</AuFormRow>
