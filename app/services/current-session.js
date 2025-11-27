@@ -46,26 +46,26 @@ export default class CurrentSessionService extends Service {
       if (accountId && groupId) {
         const accountPromises = isEnglishAccountsModelEnabled()
           ? [
-            this.store.findRecord('account', accountId, {
-              include: 'user',
-            }),
-            // We need to do an extra API call here because ACM/IDM users don't seem to have a "bestuurseenheden" relationship in the DB.
-            // By fetching the record directly we bypass that issue
-            this.store.findRecord('group', groupId, {
-              reload: true,
-            }),
-          ]
+              this.store.findRecord('account', accountId, {
+                include: 'user',
+              }),
+              // We need to do an extra API call here because ACM/IDM users don't seem to have a "bestuurseenheden" relationship in the DB.
+              // By fetching the record directly we bypass that issue
+              this.store.findRecord('group', groupId, {
+                reload: true,
+              }),
+            ]
           : [
-            this.store.findRecord('account', accountId, {
-              include: 'gebruiker.bestuurseenheden.classificatie',
-            }),
-            // We need to do an extra API call here because ACM/IDM users don't seem to have a "bestuurseenheden" relationship in the DB.
-            // By fetching the record directly we bypass that issue
-            this.store.findRecord('bestuurseenheid', groupId, {
-              include: 'classificatie',
-              reload: true,
-            }),
-          ];
+              this.store.findRecord('account', accountId, {
+                include: 'gebruiker.bestuurseenheden.classificatie',
+              }),
+              // We need to do an extra API call here because ACM/IDM users don't seem to have a "bestuurseenheden" relationship in the DB.
+              // By fetching the record directly we bypass that issue
+              this.store.findRecord('bestuurseenheid', groupId, {
+                include: 'classificatie',
+                reload: true,
+              }),
+            ];
 
         const [account, group] = await Promise.all(accountPromises);
 
